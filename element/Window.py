@@ -1,9 +1,10 @@
 import pyautogui as p
-from .widgets import __Widget__
 from function.manyfunction import *
+from .widgets import __Widget__
 from .element import *
-from make_element.popup.popup import *
-from make_element.graph.Graph import *
+from graph.Graph import *
+from .new_element.Image import Images
+from .new_element.Link import Link
 winsize=list(p.size())
 class WindowController:
  def __init__(self,kwargs):
@@ -11,8 +12,8 @@ class WindowController:
   self.loadfun=kwargs.get("load")
   self.title=kwargs.get("title","window")
   self.layout=kwargs.get("layout",[[]])
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg1"]))
+  self.fg=parsecolor(kwargs.get("fg"),"#000000")
+  self.bg=parsecolor(kwargs.get("bg"),"#64778d")
   self.font=kwargs.get("font",THEMES["font"])
   self.scroll_y=bols(kwargs.get("scroll_y"),False)
   self.scroll_x=bols(kwargs.get("scroll_x"),False)
@@ -172,8 +173,8 @@ class SubWindowController:
   self.min_size=kwargs.get("minsizes")
   __Widget__.window_maxandmin_size(self.root,self.max_size,self.min_size)
   self.location=kwargs.get("location",(0,0))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg1"]))
+  self.fg=parsecolor(kwargs.get("fg"),"#000000")
+  self.bg=parsecolor(kwargs.get("bg"),"#64778d")
   self.font=kwargs.get("font",THEMES["font"])
   self.scroll_y=bols(kwargs.get("scroll_y"),False)
   self.scroll_x=bols(kwargs.get("scroll_x"),False)

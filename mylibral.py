@@ -1,18 +1,12 @@
-"""
-Use demo
-layout=[
-[sgg.Text(text="textウィジェット1",key="text_key1")],
-[sgg.Text(text="textウィジェット2",key="text_key2"),sgg.Text(text="textウィジェット3",key="text_key3")],
-]
-win=sgg.window(title="demo code",layout=layout,scroll_y=True,maxmine=True)
-win.run()
-"""
+from dialog.popup import *
 from element.Window import *
 def counts():
  sgg.count+=1
  return sgg.count
 class sgg:
  count=0
+ @classmethod
+ def window(cls,**kwargs):return SubWindowController(kwargs) if kwargs.get("type")=="toplevel" else WindowController(kwargs)
  @staticmethod
  def Menu(**kwargs):return{"count":counts(),"type":"Menu",**kwargs}
  @staticmethod
@@ -89,8 +83,6 @@ class sgg:
  def Popupyesnocancel(cls,**kwargs):return popupync(**kwargs).retul
  @classmethod
  def Popuptrycancel(cls,**kwargs):return popuptry(**kwargs).retul
- @classmethod
- def window(cls,**kwargs):return SubWindowController(kwargs) if kwargs.get("type")=="toplevel" else WindowController(kwargs)
  def formatlist():
   for i in fotmat_list:print(f"{i}:{fotmat_list[i]}")
 if __name__=="__main__":

@@ -1,4 +1,5 @@
-import re,os,platform,requests
+import os,platform,requests
+from color.__color__ import Color
 def clear():os.system("cls" if platform.system()=="Windows" else "clear")
 # 文字列(str)
 def strs(txt,other=""):return txt if isinstance(txt,str) else other
@@ -22,34 +23,8 @@ def tus(lists,other=()):return lists if isinstance(lists,tuple) else other
 def ifs(val=None,tr=True,fal=False):return tr if val else fal
 # その他
 # 色
-def parsecolor(value):# 色変換
- if value==None:return None
- value=value.lower()
- if isinstance(value,str):
-  v=value.strip()
-  if v.startswith("rgb"):
-   nums=re.findall(r"\d+",v)
-   if len(nums)==3:
-    r,g,b=[int(x)for x in nums]
-    return f"#{r:02x}{g:02x}{b:02x}"
-  if re.match(r"^#[0-9a-fA-F]{6}$",v):return v
- return value
-def validate_color(s=None):
- if s==None and not isinstance(s,str):return None
- t=s.strip()
- try:
-  # mcolors.to_rgba(t)
-  return t
- except:pass
- m=re.fullmatch(r'rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)',t,flags=re.IGNORECASE)
- if m:
-  r,g,b=map(int,m.groups())
-  if 0<=r<=255 and 0<=g<=255 and 0<=b<=255:return t
- m=re.fullmatch(r'rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([0-9]*\.?[0-9]+)\s*\)',t,flags=re.IGNORECASE)
- if m:
-  r,g,b=map(int,m.groups()[:3])
-  if 0<=r<=255 and 0<=g<=255 and 0<=b<=255 and 0<=float(m.group(4))<=1:return t
- return None
+def parsecolor(value,other=None):
+ return Color(value).color(other=other)
 def markers(m):return m if m in marker_list else "o"
 def lines(m):return m if m in linestyle_list else "-"
 def formatfunc(val=None):

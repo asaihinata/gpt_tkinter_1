@@ -1,8 +1,6 @@
 from function.manyfunction import *
-import pyautogui as p,tkinter.font as tkFont
+import pyautogui as p
 winsize=list(p.size())
-class fonts(tkFont.Font):
- def __init__(self,master,family="Meiryo",size=14,weight="normal",slant="roman",overstrike=False,underline=False):super().__init__(master,family=family,size=size,weight=weight,slant=slant,overstrike=overstrike,underline=underline)
 class __Widget__:# 全体用
  def _exec_funcs(funcs=None):# exec関数(listかcallable)
   if isinstance(funcs,list):

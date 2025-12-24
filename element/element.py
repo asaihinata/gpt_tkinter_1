@@ -1,15 +1,15 @@
-import tkinter as tk,os,tkcalendar as tkc,webbrowser
+import os,tkr.tkme as tk
+from .calendar.calendar import *
 from function.manyfunction import *
-from pathlib import Path
 from tkinter import ttk,colorchooser,filedialog
-from PIL import Image,ImageTk
 from datetime import datetime,date
-from .widgets import __Widget__ as wi,fonts
+from .widgets import __Widget__ as wi
+from font.font import fonts
 class Text(tk.Label):
  def __init__(self,master,kwargs):
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
   self.underline=False if kwargs.get("underline","normal")=="normal" else True
   self.weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -64,8 +64,8 @@ class Button(tk.Button):
   self.size=wi._size(kwargs)
   self.width=self.size[0]
   self.height=self.size[1]
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg2"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg2"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.button_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.button_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.button_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -116,8 +116,8 @@ class Button(tk.Button):
 class FolderLoad(tk.Button):
  def __init__(self,master,kwargs):
   self.foldersaves=None
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg2"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg2"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.button_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.button_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.button_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -177,8 +177,8 @@ class FolderLoad(tk.Button):
 class FileLoad(tk.Button):
  def __init__(self,master,kwargs):
   self.filesaves=None
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg2"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg2"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.button_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.button_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.button_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -238,8 +238,8 @@ class FileLoad(tk.Button):
 class Colorbtn(tk.Button):
  def __init__(self,master,kwargs):
   self.selectcolor=None
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg2"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg2"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.button_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.button_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.button_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -300,8 +300,8 @@ class Colorbtn(tk.Button):
 class Input(tk.Frame):
  def __init__(self,master,kwargs):
   super().__init__(master)
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg3"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg3"])
   self.entry_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.entry_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.entry_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -323,7 +323,7 @@ class Input(tk.Frame):
   self.width=num0(kwargs.get("width"),20)
   self.text=kwargs.get("text","")
   self.show=kwargs.get("show")
-  self.insertbackground=parsecolor(kwargs.get("insertbg",self.fg))
+  self.insertbackground=parsecolor(kwargs.get("insertbg"),self.fg)
   self.insertwidth=num0(kwargs.get("insertwidth"),2)
   self.scroll_x=bols(kwargs.get("scroll_x"),False)
   self.input=tk.Entry(self,takefocus=self.takefocus,highlightcolor=self.highlightcolor,highlightbackground=self.highlightbackground,highlightthickness=self.highlightthickness,activeforeground=self.activeforeground,activebackground=self.activebackground,relief=self.relief,cursor=self.cursor,insertwidth=self.insertwidth,insertbackground=self.insertbackground,bg=self.bg,fg=self.fg,font=self.font,width=self.width,justify=self.justify,show=self.show)
@@ -342,8 +342,8 @@ class Input(tk.Frame):
 class Multiline(tk.Frame):
  def __init__(self,master,kwargs):
   super().__init__(master)
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg3"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg3"])
   self.entry_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.entry_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.entry_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -397,8 +397,8 @@ class Multiline(tk.Frame):
  def _delta(self):self.mul.destroy()
 class InputNumber(tk.Spinbox):
  def __init__(self,master,kwargs):
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg3"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg3"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.entry_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.entry_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.entry_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -426,17 +426,15 @@ class InputNumber(tk.Spinbox):
   self.values=kwargs.get("values")
   self.insertbackground=parsecolor(kwargs.get("insertbg",self.fg))
   self.insertwidth=num0(kwargs.get("insertwidth"),2)
-  if isinstance(self.values,(list,tuple)):
-   super().__init__(master,takefocus=self.takefocus,highlightcolor=self.highlightcolor,highlightbackground=self.highlightbackground,highlightthickness=self.highlightthickness,activeforeground=self.activeforeground,activebackground=self.activebackground,relief=self.relief,cursor=self.cursor,textvariable=tk.StringVar(value=self.values[0]),values=self.values,bg=self.bg,fg=self.fg,font=self.font,justify=self.justify,wrap=self.wrap,width=self.width)
-  else:
-   super().__init__(master,takefocus=self.takefocus,insertbackground=self.insertbackground,insertwidth=self.insertwidth,highlightcolor=self.highlightcolor,highlightbackground=self.highlightbackground,highlightthickness=self.highlightthickness,activeforeground=self.activeforeground,activebackground=self.activebackground,relief=self.relief,cursor=self.cursor,from_=self.min,to=self.max,increment=self.increment,bg=self.bg,fg=self.fg,font=self.font,justify=self.justify,wrap=self.wrap,width=self.width)
+  if isinstance(self.values,(list,tuple)):super().__init__(master,takefocus=self.takefocus,highlightcolor=self.highlightcolor,highlightbackground=self.highlightbackground,highlightthickness=self.highlightthickness,activeforeground=self.activeforeground,activebackground=self.activebackground,relief=self.relief,cursor=self.cursor,textvariable=tk.StringVar(value=self.values[0]),values=self.values,bg=self.bg,fg=self.fg,font=self.font,justify=self.justify,wrap=self.wrap,width=self.width)
+  else:super().__init__(master,takefocus=self.takefocus,insertbackground=self.insertbackground,insertwidth=self.insertwidth,highlightcolor=self.highlightcolor,highlightbackground=self.highlightbackground,highlightthickness=self.highlightthickness,activeforeground=self.activeforeground,activebackground=self.activebackground,relief=self.relief,cursor=self.cursor,from_=self.min,to=self.max,increment=self.increment,bg=self.bg,fg=self.fg,font=self.font,justify=self.justify,wrap=self.wrap,width=self.width)
  def _get(self):return self.get()
  def _delta(self):self.destroy()
 class Combobox(ttk.Combobox):
  def __init__(self,master,kwargs):
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
   self.entry_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.entry_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.entry_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -472,10 +470,10 @@ class Listbox(tk.Frame):
  def __init__(self,master,kwargs):
   super().__init__(master)
   self.values=kwargs.get("values",[]) if type(kwargs.get("values",[])) in [list,tuple] else []
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg3"]))
-  self.selectforeground=parsecolor(kwargs.get("selectfg",THEMES["fg1"]))
-  self.selectbackground=parsecolor(kwargs.get("selectbg",THEMES["bg5"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg3"])
+  self.selectforeground=parsecolor(kwargs.get("selectfg"),THEMES["fg1"])
+  self.selectbackground=parsecolor(kwargs.get("selectbg"),THEMES["bg5"])
   self.entry_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.entry_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.entry_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -546,9 +544,9 @@ class Radio(tk.Radiobutton):
  groups,count={},0
  def __init__(self,master,kwargs):
   Radio.count+=1
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
   self.underline=False if kwargs.get("underline","normal")=="normal" else True
   self.weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -612,9 +610,9 @@ class Radio(tk.Radiobutton):
  def _delta(self):self.destroy()
 class Checkbox(tk.Checkbutton):
  def __init__(self,master,kwargs):
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
   self.underline=False if kwargs.get("underline","normal")=="normal" else True
   self.weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -654,10 +652,10 @@ class Checkbox(tk.Checkbutton):
 class Tree(tk.Frame):
  def __init__(self,master,kwargs):
   super().__init__(master)
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
-  self.header_fg=parsecolor(kwargs.get("header_fg",THEMES["fg1"]))
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg2"]))
-  self.header_bg=parsecolor(kwargs.get("header_bg",THEMES["bg4"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
+  self.header_fg=parsecolor(kwargs.get("header_fg"),THEMES["fg1"])
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg2"])
+  self.header_bg=parsecolor(kwargs.get("header_bg"),THEMES["bg4"])
   self.rowheight=kwargs.get("rowheight",50)
   self.values=kwargs.get("values",[])
   self.header=kwargs.get("header",[])
@@ -790,10 +788,10 @@ class Tree(tk.Frame):
 class Table(tk.Frame):
  def __init__(self,master,kwargs):
   super().__init__(master)
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
-  self.header_fg=parsecolor(kwargs.get("header_fg",THEMES["fg1"]))
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg2"]))
-  self.header_bg=parsecolor(kwargs.get("header_bg",THEMES["bg4"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
+  self.header_fg=parsecolor(kwargs.get("header_fg"),THEMES["fg1"])
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg2"])
+  self.header_bg=parsecolor(kwargs.get("header_bg"),THEMES["bg4"])
   self.cursor=kwargs.get("cursor")
   self.takefocus=bols(kwargs.get("takefocus"))
   self.padding=kwargs.get("padding",0)
@@ -861,9 +859,9 @@ class Table(tk.Frame):
  def _delta(self):self.tree.destroy()
 class Slidebar(tk.Scale):
  def __init__(self,master,kwargs):
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
   self.underline=False if kwargs.get("underline","normal")=="normal" else True
   self.weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -899,8 +897,8 @@ class Slidebar(tk.Scale):
 class Menu(tk.Menu):
  def __init__(self,master,kwargs):
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.underline=False if kwargs.get("underline","normal")=="normal" else True
   self.weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -966,8 +964,8 @@ class Menu(tk.Menu):
   self._create_menu_lists()
 class Menubutton(tk.Menubutton):
  def __init__(self,master,kwargs):
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
-  self.bg=parsecolor(kwargs.get("bg",THEMES["bg2"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
+  self.bg=parsecolor(kwargs.get("bg"),THEMES["bg2"])
   self.button_underline=False if kwargs.get("underline","normal")=="normal" else True
   self.button_weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.button_slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -1018,8 +1016,8 @@ class Menubutton(tk.Menubutton):
 class Frames(tk.LabelFrame):
  def __init__(self,master,kwargs):
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.underline=False if kwargs.get("underline","normal")=="normal" else True
   self.weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -1046,7 +1044,7 @@ class Frames(tk.LabelFrame):
 class Column(tk.Frame):
  def __init__(self,master,kwargs):
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
   self.cursor=kwargs.get("cursor")
   self.takefocus=bols(kwargs.get("takefocus"))
   self.borderwidth=num0(kwargs.get("bd"))
@@ -1065,8 +1063,8 @@ class Tab(tk.Frame):
  def __init__(self,master,kwargs):
   super().__init__(master)
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.underline=False if kwargs.get("underline","normal")=="normal" else True
   self.weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -1107,11 +1105,11 @@ class Tab(tk.Frame):
  def get_current_tab(self):
   try:return self.nb.tab(self.nb.select(),"text")
   except:return None
-class Calendars(tkc.Calendar):
+class Calendars(Calendar):
  def __init__(self,master,kwargs):
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.underline=False if kwargs.get("underline","normal")=="normal" else True
   self.weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
   self.slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
@@ -1139,12 +1137,12 @@ class Calendars(tkc.Calendar):
   self.showweek=bols(kwargs.get("showweek",False),False)
   self.selectmode=kwargs.get("selectmode") if kwargs.get("selectmode") in ["none","day"] else "day"
   self.format=kwargs.get("format") if formatfunc(kwargs.get("format",None)) else fotmat_list["format0"]
-  self.headersbackground=parsecolor(kwargs.get("headersbg","gray70"))
-  self.headersforeground=parsecolor(kwargs.get("headersfg","black"))
-  self.othermonthbackground=parsecolor(kwargs.get("othermonthbg","gray93"))
-  self.othermonthforeground=parsecolor(kwargs.get("othermonthfg","gray45"))
-  self.weekendbackground=parsecolor(kwargs.get("weekendbg","gray80"))
-  self.weekendforeground=parsecolor(kwargs.get("weekendfg","gray30"))
+  self.headersbackground=parsecolor(kwargs.get("headersbg"),"gray70")
+  self.headersforeground=parsecolor(kwargs.get("headersfg"),"black")
+  self.othermonthbackground=parsecolor(kwargs.get("othermonthbg"),"gray93")
+  self.othermonthforeground=parsecolor(kwargs.get("othermonthfg"),"gray45")
+  self.weekendbackground=parsecolor(kwargs.get("weekendbg"),"gray80")
+  self.weekendforeground=parsecolor(kwargs.get("weekendfg"),"gray30")
   self.locale=kwargs.get("locale","ja_JP")
   self.firstweekday=kwargs.get("firstweekday","sunday")
   super().__init__(master,firstweekday=self.firstweekday,locale=self.locale,weekendforeground=self.weekendforeground,weekendbackground=self.weekendbackground,othermonthforeground=self.othermonthforeground,othermonthbackground=self.othermonthbackground,headersbackground=self.headersbackground,headersforeground=self.headersforeground,selectmode=self.selectmode,year=self.year,month=self.month,day=self.day,font=self.font,showweeknumbers=self.showweek,date_pattern=self.format)
@@ -1178,7 +1176,7 @@ class Calendars(tkc.Calendar):
   if nfont and isinstance(nfont,tuple):
    self.font=nfont
    self.config(font=nfont)
-class InputDate(tkc.DateEntry):
+class InputDate(DateEntry):
  def __init__(self,master,kwargs):
   self.showweek=bols(kwargs.get("showweek"),False)
   self.selectmode=kwargs.get("selectmode") if kwargs.get("selectmode") in ["none","day"] else "day"
@@ -1191,16 +1189,16 @@ class InputDate(tkc.DateEntry):
   self.month=self.dates.month
   self.day=self.dates.day
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
-  self.headersbackground=parsecolor(kwargs.get("headersbg","gray70"))
-  self.headersforeground=parsecolor(kwargs.get("headersfg","black"))
-  self.othermonthbackground=parsecolor(kwargs.get("othermonthbg","gray93"))
-  self.othermonthforeground=parsecolor(kwargs.get("othermonthfg","gray45"))
-  self.normalbg=parsecolor(kwargs.get("normalbg","gray93"))
-  self.normalfg=parsecolor(kwargs.get("normalfg","gray45"))
-  self.weekendbackground=parsecolor(kwargs.get("weekendbg","gray80"))
-  self.weekendforeground=parsecolor(kwargs.get("weekendfg","gray30"))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
+  self.headersbackground=parsecolor(kwargs.get("headersbg"),"gray70")
+  self.headersforeground=parsecolor(kwargs.get("headersfg"),"black")
+  self.othermonthbackground=parsecolor(kwargs.get("othermonthbg"),"gray93")
+  self.othermonthforeground=parsecolor(kwargs.get("othermonthfg"),"gray45")
+  self.normalbg=parsecolor(kwargs.get("normalbg"),"white")
+  self.normalfg=parsecolor(kwargs.get("normalfg"),"black")
+  self.weekendbackground=parsecolor(kwargs.get("weekendbg"),"gray80")
+  self.weekendforeground=parsecolor(kwargs.get("weekendfg"),"gray30")
   super().__init__(master,weekendbackground=self.weekendbackground,weekendforeground=self.weekendforeground,normalforeground=self.normalfg,normalbackground=self.normalbg,headersforeground=self.headersforeground,headersbackground=self.headersbackground,bg=self.bg,fg=self.fg,state=self.states,locale=self.locale,date_pattern=self.format,firstweekday=self.firstweekday,day=self.day,month=self.month,year=self.year,selectmode=self.selectmode,showweeknumbers=self.showweek)
 class Progressbar(ttk.Progressbar):
  def __init__(self,master,kwargs):
@@ -1211,9 +1209,9 @@ class Progressbar(ttk.Progressbar):
   self.length=num0(kwargs.get("length"),200)
   self.mode=kwargs.get("mode") if kwargs.get("mode") in ["determinate","indeterminate"] else "determinate"
   self.orient=kwargs.get("orient") if kwargs.get("orient") in ["horizontal","vertical"] else "horizontal"
-  self.fg=parsecolor(kwargs.get("fg",THEMES["fg1"]))
+  self.fg=parsecolor(kwargs.get("fg"),THEMES["fg1"])
   self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
+  self.bg=parsecolor(kwargs.get("bg"),self.back_bg or THEMES["bg1"])
   self.funcs=kwargs.get("function")
   style=ttk.Style()
   self.style_name=f"Custom{kwargs.get("count")}.Horizontal.TProgressbar" if self.orient=="horizontal" else f"Custom{kwargs.get("count")}.Vertical.TProgressbar"
@@ -1237,109 +1235,3 @@ class Progressbar(ttk.Progressbar):
   try:self.stop()
   except:pass
  def _delta(self):self.destroy()
-# 自作　既存にはないウィジェット
-class Link(tk.Label):
- def __init__(self,master,kwargs):
-  self.fg=parsecolor(kwargs.get("fg",THEMES["link"]))
-  self.back_bg=kwargs.get("back_bg")
-  self.bg=parsecolor(kwargs.get("bg",self.back_bg or THEMES["bg1"]))
-  self.underline=True if kwargs.get("underline","normal")=="normal" else False
-  self.weight=kwargs.get("weight") if kwargs.get("weight") in ["normal","bold"] else "normal"
-  self.slant=kwargs.get("slant") if kwargs.get("slant") in ["roman","italic"] else "roman"
-  self.overstrike=False if kwargs.get("overstrike","normal")=="normal" else True
-  self.font_family=kwargs.get("font_family","Meiryo")
-  self.font_size=num0(kwargs.get("font_size"),14)
-  self.font=kwargs.get("font",fonts(master,self.font_family,self.font_size,self.weight,self.slant,self.overstrike,self.underline))
-  self.justify=kwargs.get("justify") if kwargs.get("justify") in ["right","center","left"] else "left"
-  self.wraplength=num0(kwargs.get("wraplength"))
-  self.cursor=kwargs.get("cursor")
-  self.takefocus=bols(kwargs.get("takefocus"))
-  self.borderwidth=num0(kwargs.get("bd"))
-  self.relief=kwargs.get("relief") if kwargs.get("relief") in relief_list else "flat"
-  self.padx=num0(kwargs.get("padx"))
-  self.pady=num0(kwargs.get("pady"))
-  self.anchor=kwargs.get("anchor","w") if get_dict(anchor_dict,kwargs.get("anchor","right"))[1] in anchor_list else "w"
-  self.activeforeground=parsecolor(kwargs.get("activefg"))
-  self.activebackground=parsecolor(kwargs.get("activebg"))
-  self.highlightthickness=num0(kwargs.get("highlightthickness"))
-  self.highlightcolor=parsecolor(kwargs.get("highlightfg"))
-  self.highlightbackground=parsecolor(kwargs.get("highlightbg"))
-  self.link_url=kwargs.get("link")
-  self.linkchecks(self.link_url)
-  txt=kwargs.get("text")
-  if (self.link_url and self.link_url!="") and (txt and txt!=""):self.text=txt
-  elif (self.link_url and self.link_url!="") and (not txt or txt==""):self.text=self.link_url
-  else:self.text=""
-  self.size=wi._size(kwargs)
-  self.width=self.size[0]
-  self.height=self.size[1]
-  super().__init__(master,takefocus=self.takefocus,highlightcolor=self.highlightcolor,highlightbackground=self.highlightbackground,highlightthickness=self.highlightthickness,activeforeground=self.activeforeground,activebackground=self.activebackground,anchor=self.anchor,pady=self.pady,padx=self.padx,relief=self.relief,wraplength=self.wraplength,cursor=self.cursor,text=self.text,bg=self.bg,fg=self.fg,font=self.font,width=self.width,height=self.height,justify=self.justify)
-  self.bind("<Button-1>",self._link)
- def _delta(self):self.destroy()
- def _link(self,event):
-  if self.links==True and self.link_url and self.link_url!="":
-   try:webbrowser.open(self.link_url)
-   except Exception as e:print(f"error:{e}")
-  elif self.links==False:print("error")
- def linkchecks(self,url):self.links=urlcheck(url)
- def get_link(self):return self.link_url
- def set_link(self,link):self.link_url=link
- def get_size(self):return (self.width,self.height)
- def get_text(self):return self.text
- def set_text(self,txt):
-  if txt:
-   self.text=txt
-   self.config(text=txt)
- def get_bg(self):return self.bg
- def set_bg(self,nbg):
-  if nbg and isinstance(nbg,str):
-   self.bg=nbg
-   self.config(bg=nbg)
- def get_fg(self):return self.fg
- def set_fg(self,nfg):
-  if nfg and isinstance(nfg,str):
-   self.fg=nfg
-   self.config(fg=nfg)
- def get_font(self):return self.font
- def set_font(self,nfont):
-  if nfont and isinstance(nfont,tuple):
-   self.font=nfont
-   self.config(font=nfont)
-class Images(tk.Label):
- def __init__(self,master,kwargs):
-  self.master=master
-  self.path=Path(kwargs.get("path"))
-  self.size=self._img_size(kwargs,self.path)
-  self.takefocus=bols(kwargs.get("takefocus"))
-  self.width=self.size[0]
-  self.height=self.size[1]
-  self.image_ref=None
-  self.image=None
-  self._image_set()
- def _img_size(self,kwargs,path):
-  size=list(kwargs.get("size",(100,100)))
-  if size and isinstance(size,tuple) and len(size)==2:
-   width,height=nums(kwargs.get("width",None)),nums(kwargs.get("height",None))
-   return (width if size[0]==None and width!=None else size[0],height if size[1]==None and height!=None else size[1])
-  try:
-   with Image.open(path) as img:return img.size
-  except:return (100,100)
- def _image_set(self,path=None):
-  try:
-   if path==None:path=self.path
-   img=Image.open(path)
-   if self.size and isinstance(self.size,tuple):img=img.resize(self.size)
-   self.image_ref=ImageTk.PhotoImage(img)
-   super().__init__(self.master,takefocus=self.takefocus,image=self.image_ref,height=self.height,width=self.width)
-   self.image=self.image_ref
-   self.path=path
-  except:
-   e_txt=f"error:{self.path}"
-   super().__init__(self.master,takefocus=self.takefocus,text=e_txt,height=1,width=len(e_txt))
- def _delta(self):self.destroy()
- def clear(self):
-  self.image=None
-  self.image_ref=None
-  self.config(image="",text="")
- def get_path(self):return self.path
- def get_ex(self):return os.path.split(self.path)[1].split(".",1)[1]
